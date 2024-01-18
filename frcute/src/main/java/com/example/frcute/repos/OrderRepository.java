@@ -8,7 +8,7 @@ import com.example.frcute.entities.Order;
 public interface OrderRepository extends JpaRepository<Order, Integer> { 
   
 
-   Order findByOrderID(Long orderID); 
+   Order findByOrderID(int orderID); 
 
    List<Order> findAll();  
   

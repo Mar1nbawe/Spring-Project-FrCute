@@ -15,7 +15,7 @@ public class OrderService {
     
     private final OrderRepository repository;
 
-    public  Order getOrderID(long id)
+    public  Order getOrderID(int id)
     {
         return repository.findByOrderID(id);
     }

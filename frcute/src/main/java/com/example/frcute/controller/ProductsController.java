@@ -20,11 +20,12 @@ import org.springframework.validation.annotation.Validated;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Validated
 @RequiredArgsConstructor
 public class ProductsController {
+    
     
     private final ProductsService service;
     @GetMapping("/products/show/{id}")
@@ -48,15 +50,21 @@ return ResponseEntity.ok().body(service.getProductID(id).getProductID() + " " + 
 }
 
     @PostMapping("/products/create")
-    @Operation(summary = "setOrder(UserUUID,ProductUUID,Quantity(int),CourierUUID)", description = "(POST) Creates an order using the provided UserID, ProductID, Quantity and CourierID.\nReturns the full order, along with the OrderID and calculated total price.\nThis order should only be created by the user with the UUID to be accessed, or by administrators exclusively for testing.")
+    @Operation(summary = "addProducts(name, price, categoryID)", description = "(POST) Creates a product using the provided parameters")
     @ApiResponses(value={
             @ApiResponse(responseCode="200",description="Created successfully"),
             @ApiResponse(responseCode = "4xx",description = "Table/Database not found"),
             @ApiResponse(responseCode = "500",description = "One of the specified UUIDs was not found")
     })
-    public ResponseEntity<Products> postMethodName( @RequestBody Products product)    
+    public void postProduct(
+         @RequestParam(value = "name") String name, 
+         @RequestParam(value = "price") int price, 
+         @RequestParam(value = "category") long categoryID
+         )    
     {
-        return ResponseEntity.ok().body(service.addProducts(product));
+
+        service.addProducts(name, price, categoryID);
     }
+
     
 }

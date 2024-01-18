@@ -22,12 +22,12 @@ public class Order {
     @Column (name="CustomerID", nullable = false)
     private int customerID;
 
-    @Column (name="OrderDate", nullable = false)
-    private Date orderDate;
-
     @ManyToOne
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
     private Products ProductID;
+
+    /* @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "customerID") */
 
     public int getOrderID() {
         return this.orderID;
@@ -45,13 +45,6 @@ public class Order {
         this.customerID = customerID;
     }
 
-    public Date getOrderDate() {
-        return this.orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
 
     public Products getProductID() {
         return this.ProductID;

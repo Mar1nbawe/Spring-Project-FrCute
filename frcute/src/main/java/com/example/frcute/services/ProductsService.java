@@ -30,8 +30,13 @@ public class ProductsService {
         return repository.findAll();
     }
 
-    public Products addProducts(Products product)
+    public Products addProducts(String name, int price, long categoryID)
     {
+        Products product = new Products();
+        product.setName(name);
+        product.setPrice(price);
+        product.setCategoryID(categoryID);
+        System.out.println(name);
         return repository.save(product);
     }
 }

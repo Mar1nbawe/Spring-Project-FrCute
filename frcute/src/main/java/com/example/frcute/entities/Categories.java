@@ -14,17 +14,18 @@ public class Categories {
 
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long categoryID;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="categoryid", nullable = false)
+    public long categoryID;
 
     @Column(name="Name", nullable = false)
     private String name;
 
-    public long getCategoryID() {
+    public long getIDCategory() {
         return this.categoryID;
     }
 
-    public void setCategoryID(long categoryID) {
+    public void setIDCategory(long categoryID) {
         this.categoryID = categoryID;
     }
 

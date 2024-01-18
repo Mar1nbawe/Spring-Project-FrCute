@@ -35,7 +35,7 @@ public class CategoriesController {
             @ApiResponse(responseCode = "500",description = "ID not found")
     })
     public ResponseEntity<String> getCategory(@PathVariable int id) {
-        return ResponseEntity.ok().body(service.getCategoryID(id).getCategoryID() + " " + service.getCategoryID(id).getName());
+        return ResponseEntity.ok().body(service.getCategoryID(id).getIDCategory() + " " + service.getCategoryID(id).getName());
 }
 
     

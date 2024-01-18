@@ -9,8 +9,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name="products")
 public class Products {
 
@@ -22,13 +24,13 @@ public class Products {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "CategoryID", nullable = false, referencedColumnName = "categoryid")
-    private Categories categoryID;
+    @JoinColumn(name = "CategoryID", nullable = true, referencedColumnName = "categoryid")
+    public Categories categoryID;
 
     @Column(name="Price", nullable = false)
     private double price;
 
-    @Column(name="Description", nullable = false)
+    @Column(name="Description", nullable = true)
     private String description;
     
 
@@ -51,11 +53,11 @@ public class Products {
     }
 
     public long getCategoryID() {
-        return this.categoryID.getCategoryID();
+        return this.categoryID.getIDCategory();
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID.getCategoryID();
+    public void setCategoryID(long catID) {
+        this.categoryID.categoryID = catID;
     }
 
     public double getPrice() {
