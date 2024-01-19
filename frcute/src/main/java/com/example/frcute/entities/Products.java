@@ -17,15 +17,16 @@ import lombok.Data;
 public class Products {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ProductID", nullable = false)
     private int productID;
 
     @Column(name="Name", nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "CategoryID", nullable = true, referencedColumnName = "categoryid")
-    public Categories categoryID;
+  
+    @Column(name="CategoryID", nullable = false)
+    public long categoryID;
 
     @Column(name="Price", nullable = false)
     private double price;
@@ -53,11 +54,11 @@ public class Products {
     }
 
     public long getCategoryID() {
-        return this.categoryID.getIDCategory();
+        return this.categoryID;
     }
 
     public void setCategoryID(long catID) {
-        this.categoryID.categoryID = catID;
+        this.categoryID = catID;
     }
 
     public double getPrice() {

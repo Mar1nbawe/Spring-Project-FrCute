@@ -29,4 +29,12 @@ public class ProviderProductsService {
     {
         return repository.findAll();
     }
+
+    public ProviderProducts addProviderProducts(int providerID, long productID)
+    {
+        ProviderProducts providerProducts = new ProviderProducts();
+        providerProducts.setProviderid(providerID);
+        providerProducts.setProductid(Math.toIntExact(productID));
+        return repository.save(providerProducts);
+    }
 }

@@ -24,7 +24,7 @@ public class ProviderProductsController {
     
     private final ProviderProductsService service;
     @GetMapping("/products/provider/{id}")
-    @Operation(summary = "getProductProvider(id)", description = "gets all the products from a provider based on its own ID")
+    @Operation(summary = "getProductsProvider(id)", description = "gets all the products from a provider based on its own ID")
     @ApiResponses(value={
             @ApiResponse(responseCode="200",description="Returned successfully"),
             @ApiResponse(responseCode = "4xx",description = "Database not found."),

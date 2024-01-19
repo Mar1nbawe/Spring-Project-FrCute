@@ -24,4 +24,14 @@ public class CustomersService {
     {
         return repository.findAll();
     }
+
+    public Customers addCustomer(String first, String last, String mail)
+    {
+        Customers customer = new Customers();
+        customer.setFirstName(first);
+        customer.setLastName(last);
+        customer.setEmail(mail);
+        return repository.save(customer);
+        
+    }
 }

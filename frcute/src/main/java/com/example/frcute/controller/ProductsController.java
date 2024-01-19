@@ -2,6 +2,7 @@ package com.example.frcute.controller;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -56,15 +57,29 @@ return ResponseEntity.ok().body(service.getProductID(id).getProductID() + " " + 
             @ApiResponse(responseCode = "4xx",description = "Table/Database not found"),
             @ApiResponse(responseCode = "500",description = "One of the specified UUIDs was not found")
     })
-    public void postProduct(
+    public ResponseEntity<Products> addProducts(
          @RequestParam(value = "name") String name, 
          @RequestParam(value = "price") int price, 
-         @RequestParam(value = "category") long categoryID
+         @RequestParam(value = "category") long categoryID,
+         @RequestParam(value = "description", required = false) String description
          )    
     {
 
-        service.addProducts(name, price, categoryID);
+        return ResponseEntity.ok().body(service.addProducts(name, price, categoryID, description));
     }
 
-    
+    @PostMapping("/products/delete")
+    @Operation(summary = "deleteProducts(id)", description = "(POST) Deletes a product using the provided parameters")
+    @ApiResponses(value={
+            @ApiResponse(responseCode="200",description="Created successfully"),
+            @ApiResponse(responseCode = "4xx",description = "Table/Database not found"),
+            @ApiResponse(responseCode = "500",description = "One of the specified UUIDs was not found")
+    })
+    public ResponseEntity<String> deleteProducts(
+         @RequestParam(value = "id") int id
+         )    
+    {
+
+        return ResponseEntity.ok().body(service.deleteProducts(id));
+    }
 }
